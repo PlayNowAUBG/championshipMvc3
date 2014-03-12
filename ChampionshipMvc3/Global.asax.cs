@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ChampionshipMvc3.Models;
+using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
@@ -40,6 +41,12 @@ namespace ChampionshipMvc3
 
             RegisterGlobalFilters(GlobalFilters.Filters);
             RegisterRoutes(RouteTable.Routes);
+        }
+
+        private void InitializaDataContext()
+        {
+            PlayNowDataContext dataContext = new PlayNowDataContext();
+            RepositoryBase repositoryBase = new RepositoryBase(dataContext);
         }
     }
 }
