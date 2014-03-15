@@ -1,0 +1,118 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="PlayNowDb" Class="PlayNowDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=VPP090-PC\SQLEXPRESS;Initial Catalog=PlayNowDb;Integrated Security=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="PlayNowDbConnection" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.Videos" Member="Videos">
+    <Type Name="Video">
+      <Column Name="VideoID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="TeamID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="TimeStamp" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Association Name="Team_Video" Member="Team" ThisKey="TeamID" OtherKey="TeamID" Type="Team" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Pictures" Member="Pictures">
+    <Type Name="Picture">
+      <Column Name="PictureID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Timestamp" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="TeamID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Association Name="Team_Picture" Member="Team" ThisKey="TeamID" OtherKey="TeamID" Type="Team" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Players" Member="Players">
+    <Type Name="Player">
+      <Column Name="PlayerID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="FirstName" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="LastName" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="TeamID" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="PlayerType" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="UserId" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Association Name="Team_Player" Member="Team" ThisKey="TeamID" OtherKey="TeamID" Type="Team" IsForeignKey="true" />
+      <Association Name="aspnet_User_Player" Member="aspnet_User" ThisKey="UserId" OtherKey="UserId" Type="aspnet_User" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Schedule" Member="Schedules">
+    <Type Name="Schedule">
+      <Column Name="ScheduleID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="TeamID" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Association Name="Team_Schedule" Member="Team" ThisKey="TeamID" OtherKey="TeamID" Type="Team" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Stadiums" Member="Stadiums">
+    <Type Name="Stadium">
+      <Column Name="StadiumID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Association Name="Stadium_Reservation" Member="Reservations" ThisKey="StadiumID" OtherKey="StadiumID" Type="Reservation" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Teams" Member="Teams">
+    <Type Name="Team">
+      <Column Name="TeamID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Association Name="Team_Video" Member="Videos" ThisKey="TeamID" OtherKey="TeamID" Type="Video" />
+      <Association Name="Team_Picture" Member="Pictures" ThisKey="TeamID" OtherKey="TeamID" Type="Picture" />
+      <Association Name="Team_Player" Member="Players" ThisKey="TeamID" OtherKey="TeamID" Type="Player" />
+      <Association Name="Team_Schedule" Member="Schedules" ThisKey="TeamID" OtherKey="TeamID" Type="Schedule" />
+      <Association Name="Team_TeamsPicture" Member="TeamsPictures" ThisKey="TeamID" OtherKey="TeamID" Type="TeamsPicture" />
+      <Association Name="Team_TeamsVideo" Member="TeamsVideos" ThisKey="TeamID" OtherKey="TeamsID" Type="TeamsVideo" />
+      <Association Name="Team_TournamentsTeam" Member="TournamentsTeams" ThisKey="TeamID" OtherKey="TeamID" Type="TournamentsTeam" />
+      <Association Name="Team_Reservation" Member="Reservations" ThisKey="TeamID" OtherKey="TeamID" Type="Reservation" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TeamsPictures" Member="TeamsPictures">
+    <Type Name="TeamsPicture">
+      <Column Name="TeamPictureID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="TeamID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="PictureID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Association Name="Team_TeamsPicture" Member="Team" ThisKey="TeamID" OtherKey="TeamID" Type="Team" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TeamsVideos" Member="TeamsVideos">
+    <Type Name="TeamsVideo">
+      <Column Name="TeamsVideosID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="TeamsID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="VideosID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Association Name="Team_TeamsVideo" Member="Team" ThisKey="TeamsID" OtherKey="TeamID" Type="Team" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Tournaments" Member="Tournaments">
+    <Type Name="Tournament">
+      <Column Name="TournamentID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="NumberOfTeams" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="TeamsTournamentsID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Association Name="Tournament_TournamentsTeam" Member="TournamentsTeams" ThisKey="TournamentID" OtherKey="TournamentID" Type="TournamentsTeam" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TournamentsTeams" Member="TournamentsTeams">
+    <Type Name="TournamentsTeam">
+      <Column Name="TournamentTeamID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="TeamID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="TournamentID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Association Name="Team_TournamentsTeam" Member="Team" ThisKey="TeamID" OtherKey="TeamID" Type="Team" IsForeignKey="true" />
+      <Association Name="Tournament_TournamentsTeam" Member="Tournament" ThisKey="TournamentID" OtherKey="TournamentID" Type="Tournament" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.aspnet_Users" Member="aspnet_Users">
+    <Type Name="aspnet_User">
+      <Column Name="ApplicationId" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="UserId" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="UserName" Type="System.String" DbType="NVarChar(256) NOT NULL" CanBeNull="false" />
+      <Column Name="LoweredUserName" Type="System.String" DbType="NVarChar(256) NOT NULL" CanBeNull="false" />
+      <Column Name="MobileAlias" Type="System.String" DbType="NVarChar(16)" CanBeNull="true" />
+      <Column Name="IsAnonymous" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="LastActivityDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Association Name="aspnet_User_Player" Member="Players" ThisKey="UserId" OtherKey="UserId" Type="Player" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Reservations" Member="Reservations">
+    <Type Name="Reservation">
+      <Column Name="ReservationID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="StartTime" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="EndTime" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="StadiumID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="TeamID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Association Name="Stadium_Reservation" Member="Stadium" ThisKey="StadiumID" OtherKey="StadiumID" Type="Stadium" IsForeignKey="true" />
+      <Association Name="Team_Reservation" Member="Team" ThisKey="TeamID" OtherKey="TeamID" Type="Team" IsForeignKey="true" />
+    </Type>
+  </Table>
+</Database>
