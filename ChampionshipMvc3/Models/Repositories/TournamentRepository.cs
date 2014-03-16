@@ -7,22 +7,22 @@ using System.Web;
 
 namespace ChampionshipMvc3.Models.Repositories
 {
-    public class TeamRepository : ITeamRepository
+    public class TournamentRepository : ITournamentRepository
     {
-        public void AddNewTeam(Team team)
+        public void AddNewTournament(Tournament tournament)
         {
-            RepositoryBase.DataContext.Teams.InsertOnSubmit(team);
+            RepositoryBase.DataContext.Tournaments.InsertOnSubmit(tournament);
             SaveChanges();
         }
 
-        public Team GetModel()
+        public Tournament GetModel()
         {
-            return new Team();
+            return new Tournament();
         }
 
-        public ICollection<Team> GetAllTeams()
+        public ICollection<Tournament> GetAllTournaments()
         {
-            return RepositoryBase.DataContext.Teams.ToList();
+            throw new NotImplementedException();
         }
 
         public void SaveChanges()

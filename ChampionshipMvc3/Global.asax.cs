@@ -1,4 +1,5 @@
 ﻿using ChampionshipMvc3.Models;
+using ChampionshipMvc3.Models.DataContext;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;

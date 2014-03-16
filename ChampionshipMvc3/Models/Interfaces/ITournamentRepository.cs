@@ -6,11 +6,11 @@ using System.Web;
 
 namespace ChampionshipMvc3.Models.Interfaces
 {
-    public interface ITeamRepository
+    public interface ITournamentRepository
     {
-        void AddNewTeam(Team team);
-        Team GetModel();
-        ICollection<Team> GetAllTeams();
+        void AddNewTournament(Tournament tournament);
+        Tournament GetModel();
+        ICollection<Tournament> GetAllTournaments();
         void SaveChanges();
     }
 }

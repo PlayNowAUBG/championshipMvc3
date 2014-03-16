@@ -7,22 +7,22 @@ using System.Web;
 
 namespace ChampionshipMvc3.Models.Repositories
 {
-    public class TeamRepository : ITeamRepository
+    public class ReservationRepository : IReservationRepository
     {
-        public void AddNewTeam(Team team)
+        public void AddNewReservation(Reservation reservation)
         {
-            RepositoryBase.DataContext.Teams.InsertOnSubmit(team);
+            RepositoryBase.DataContext.Reservations.InsertOnSubmit(reservation);
             SaveChanges();
         }
 
-        public Team GetModel()
+        public Reservation GetModel()
         {
-            return new Team();
+            return new Reservation();
         }
 
-        public ICollection<Team> GetAllTeams()
+        public ICollection<Reservation> GetAllReservations()
         {
-            return RepositoryBase.DataContext.Teams.ToList();
+            return RepositoryBase.DataContext.Reservations.ToList();
         }
 
         public void SaveChanges()

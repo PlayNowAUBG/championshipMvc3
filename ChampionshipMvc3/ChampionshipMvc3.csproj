@@ -98,18 +98,27 @@
   <ItemGroup>
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\PlayerController.cs" />
+    <Compile Include="Controllers\ReservationController.cs" />
     <Compile Include="Controllers\TeamController.cs" />
+    <Compile Include="Controllers\TournamentController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountModels.cs" />
+    <Compile Include="Models\Interfaces\IPlayerRepository.cs" />
+    <Compile Include="Models\Interfaces\IReservationRepository.cs" />
     <Compile Include="Models\Interfaces\ITeamRepository.cs" />
-    <Compile Include="Models\PlayNow.designer.cs">
+    <Compile Include="Models\DataContext\PlayNow.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>PlayNow.dbml</DependentUpon>
     </Compile>
+    <Compile Include="Models\Interfaces\ITournamentRepository.cs" />
+    <Compile Include="Models\Repositories\PlayerRepository.cs" />
+    <Compile Include="Models\Repositories\ReservationRepository.cs" />
     <Compile Include="Models\Repositories\TeamRepository.cs" />
+    <Compile Include="Models\Repositories\TournamentRepository.cs" />
     <Compile Include="Models\RepositoryBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -169,7 +178,7 @@
     <Content Include="Content\themes\base\minified\jquery.ui.tabs.min.css" />
     <Content Include="Content\themes\base\minified\jquery.ui.theme.min.css" />
     <Content Include="Global.asax" />
-    <Content Include="Models\PlayNow.dbml">
+    <Content Include="Models\DataContext\PlayNow.dbml">
       <Generator>MSLinqToSQLGenerator</Generator>
       <LastGenOutput>PlayNow.designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
@@ -212,6 +221,9 @@
     <Content Include="Views\Shared\_LogOnPartial.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Web.config" />
+    <Content Include="Views\Player\_CreatePlayer.cshtml" />
+    <Content Include="Views\Tournament\CreateTournament.cshtml" />
+    <Content Include="Views\Reservation\CreateReservation.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -223,7 +235,7 @@
     <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Models\PlayNow.dbml.layout">
+    <None Include="Models\DataContext\PlayNow.dbml.layout">
       <DependentUpon>PlayNow.dbml</DependentUpon>
     </None>
   </ItemGroup>

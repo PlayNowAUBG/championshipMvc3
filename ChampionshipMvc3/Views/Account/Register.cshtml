@@ -21,6 +21,8 @@
         <fieldset>
             <legend>Account Information</legend>
 
+            @Html.Partial("~/Views/Player/_CreatePlayer.cshtml", new ChampionshipMvc3.Models.DataContext.Player())
+
             <div class="editor-label">
                 @Html.LabelFor(m => m.UserName)
             </div>
