@@ -224,6 +224,8 @@
     <Content Include="Views\Player\_CreatePlayer.cshtml" />
     <Content Include="Views\Tournament\CreateTournament.cshtml" />
     <Content Include="Views\Reservation\CreateReservation.cshtml" />
+    <Content Include="Views\Account\_Register.cshtml" />
+    <Content Include="Views\Account\RegisterTeam.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

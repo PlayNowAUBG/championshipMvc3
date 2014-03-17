@@ -1,0 +1,42 @@
+﻿@model ChampionshipMvc3.Models.DataContext.Team
+
+@{
+    ViewBag.Title = "RegisterTeam";
+}
+
+<h2>Register a new team</h2>
+
+<p>
+    Use the form below to create a new account. 
+</p>
+<p>
+    Passwords are required to be a minimum of @Membership.MinRequiredPasswordLength characters in length.
+</p>
+
+
+<script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+    <div>
+        <fieldset>
+            
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Name)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.Name)
+                @Html.ValidationMessageFor(model => model.Name)
+            </div>
+
+            @Html.Partial("~/Views/Account/_Register.cshtml", new ChampionshipMvc3.Models.RegisterModel())
+
+            <p>
+                <input type="submit" value="Register" />
+            </p>
+        </fieldset>
+    </div>
+}
+
+

@@ -6,14 +6,27 @@ using System.Web.Mvc;
 using System.Web.Routing;
 using System.Web.Security;
 using ChampionshipMvc3.Models;
+using ChampionshipMvc3.Models.DataContext;
+using ChampionshipMvc3.Models.Repositories;
 
 namespace ChampionshipMvc3.Controllers
 {
     public class AccountController : Controller
     {
 
+        private const string registerTeamView = "RegisterTeam";
+        private const string registerPlayerView = "RegisterPlayer";
+
+        private PlayerRepository playerRepository;
+        private TeamRepository teamRepository;
         //
         // GET: /Account/LogOn
+
+        public AccountController()
+        {
+            playerRepository = new PlayerRepository();
+            teamRepository = new TeamRepository();
+        }
 
         public ActionResult LogOn()
         {
@@ -63,6 +76,50 @@ namespace ChampionshipMvc3.Controllers
 
         //
         // GET: /Account/Register
+
+        
+        public ActionResult RegisterTeam()
+        {
+            return View(registerTeamView);
+        }
+        
+        [HttpPost]
+        public ActionResult RegisterTeam(Team teamModel, RegisterModel regModel, Player playerModel)
+        {
+            if (ModelState.IsValid)
+            {
+                // Attempt to register the user
+                MembershipCreateStatus createStatus;
+                Membership.CreateUser(regModel.UserName, regModel.Password, regModel.Email, null, null, true, null, out createStatus);
+
+                if (createStatus == MembershipCreateStatus.Success)
+                {
+                    FormsAuthentication.SetAuthCookie(regModel.UserName, false /* createPersistentCookie */);
+
+                    teamRepository.AddNewTeam(teamModel);
+
+                    playerModel.UserId = (Guid)Membership.GetUser(regModel.UserName).ProviderUserKey;
+                    playerModel.Team = teamModel;
+                    playerModel.PlayerType = "Captain";
+                    playerRepository.AddNewPlayer(playerModel);
+                }
+                return RedirectToAction("Index", "Home");
+            }
+
+            return View(teamModel);
+        }
+
+
+        public ActionResult RegisterPlayer()
+        {
+            return View(registerPlayerView);
+        }
+
+        [HttpPost]
+        public ActionResult RegisterPlayer(RegisterModel model, Player playerModel)
+        {
+            return RedirectToAction("Index","Home");
+        }
 
         public ActionResult Register()
         {

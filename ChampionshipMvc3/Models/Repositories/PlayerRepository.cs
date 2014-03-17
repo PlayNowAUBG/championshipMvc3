@@ -11,6 +11,7 @@ namespace ChampionshipMvc3.Models.Repositories
     {
         public void AddNewPlayer(Player player)
         {
+            player.PlayerID = Guid.NewGuid();
             RepositoryBase.DataContext.Players.InsertOnSubmit(player);
             SaveChanges();
         }
