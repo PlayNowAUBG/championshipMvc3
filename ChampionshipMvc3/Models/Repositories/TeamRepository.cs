@@ -30,5 +30,25 @@ namespace ChampionshipMvc3.Models.Repositories
         {
             RepositoryBase.DataContext.SubmitChanges();
         }
+
+
+        public Team FindTeamByName(string teamName)
+        {
+            ICollection<Team> teams = RepositoryBase.DataContext.Teams.ToList();
+            Team playerTeam = teams.FirstOrDefault(t => t.TeamName == teamName);
+
+            return playerTeam;
+        }
+
+
+        public bool CheckTeamPass(string teamPass, Team playerTeam)
+        {
+            if (playerTeam.TeamPassword.Trim() == teamPass)
+            {
+                return true;
+            }
+
+            return false;
+        }
     }
 }

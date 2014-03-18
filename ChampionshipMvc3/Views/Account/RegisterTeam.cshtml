@@ -23,12 +23,21 @@
         <fieldset>
             
             <div class="editor-label">
-                @Html.LabelFor(model => model.Name)
+                @Html.LabelFor(model => model.TeamName)
             </div>
             <div class="editor-field">
-                @Html.EditorFor(model => model.Name)
-                @Html.ValidationMessageFor(model => model.Name)
+                @Html.EditorFor(model => model.TeamName)
+                @Html.ValidationMessageFor(model => model.TeamName)
             </div>
+
+            <div class="editor-label">
+                @Html.LabelFor(model => model.TeamPassword)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.TeamPassword)
+                @Html.ValidationMessageFor(model => model.TeamPassword)
+            </div>
+
 
             @Html.Partial("~/Views/Account/_Register.cshtml", new ChampionshipMvc3.Models.RegisterModel())
 

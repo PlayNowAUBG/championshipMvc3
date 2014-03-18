@@ -8,6 +8,8 @@ using System.Web.Security;
 using ChampionshipMvc3.Models;
 using ChampionshipMvc3.Models.DataContext;
 using ChampionshipMvc3.Models.Repositories;
+using ChampionshipMvc3.Models.Interfaces;
+using ChampionshipMvc3.Models.Enums;
 
 namespace ChampionshipMvc3.Controllers
 {
@@ -17,8 +19,8 @@ namespace ChampionshipMvc3.Controllers
         private const string registerTeamView = "RegisterTeam";
         private const string registerPlayerView = "RegisterPlayer";
 
-        private PlayerRepository playerRepository;
-        private TeamRepository teamRepository;
+        private IPlayerRepository playerRepository;
+        private ITeamRepository teamRepository;
         //
         // GET: /Account/LogOn
 
@@ -89,9 +91,8 @@ namespace ChampionshipMvc3.Controllers
             if (ModelState.IsValid)
             {
                 // Attempt to register the user
-                MembershipCreateStatus createStatus;
-                Membership.CreateUser(regModel.UserName, regModel.Password, regModel.Email, null, null, true, null, out createStatus);
-
+                MembershipCreateStatus createStatus = RegisterUser(regModel);
+                
                 if (createStatus == MembershipCreateStatus.Success)
                 {
                     FormsAuthentication.SetAuthCookie(regModel.UserName, false /* createPersistentCookie */);
@@ -100,7 +101,7 @@ namespace ChampionshipMvc3.Controllers
 
                     playerModel.UserId = (Guid)Membership.GetUser(regModel.UserName).ProviderUserKey;
                     playerModel.Team = teamModel;
-                    playerModel.PlayerType = "Captain";
+                    playerModel.PlayerType = PlayerType.Captain; //enum necessary
                     playerRepository.AddNewPlayer(playerModel);
                 }
                 return RedirectToAction("Index", "Home");
@@ -116,14 +117,55 @@ namespace ChampionshipMvc3.Controllers
         }
 
         [HttpPost]
-        public ActionResult RegisterPlayer(RegisterModel model, Player playerModel)
+        public ActionResult RegisterPlayer(RegisterModel regModel, Player playerModel, Team teamModel)
         {
-            return RedirectToAction("Index","Home");
+            if (ModelState.IsValid)
+            {
+
+                var playerTeam = teamRepository.FindTeamByName(teamModel.TeamName);
+                if (teamRepository.CheckTeamPass(teamModel.TeamPassword, playerTeam))
+                {
+
+                    //Attempt to register the user
+                    MembershipCreateStatus createStatus = RegisterUser(regModel);
+
+                    if (createStatus == MembershipCreateStatus.Success)
+                    {
+                        FormsAuthentication.SetAuthCookie(regModel.UserName, false /* createPersistentCookie */);
+                        
+                        playerModel.Team = playerTeam;
+                        playerModel.UserId = (Guid)Membership.GetUser(regModel.UserName).ProviderUserKey;
+                        playerModel.PlayerType = PlayerType.RegularPlayer.ToString();//enum necessary
+                        playerRepository.AddNewPlayer(playerModel);
+                    }
+                    return RedirectToAction("Index", "Home");
+                }
+            }
+
+            return View(registerPlayerView);
+        }
+
+        private static MembershipCreateStatus RegisterUser(RegisterModel regModel)
+        {
+            MembershipCreateStatus createStatus;
+            Membership.CreateUser(regModel.UserName, regModel.Password, regModel.Email, null, null, true, null, out createStatus);
+            return createStatus;
         }
 
         public ActionResult Register()
         {
             return View();
+        }
+
+        public ActionResult FilterTeams(string term)
+        {
+            var teams = teamRepository.GetAllTeams();
+            var filteredTeams = teams
+                                    .Where(t => t.TeamName.ToLower().Contains(term.ToLower()))
+                                    .Take(10)
+                                    .Select(t => new { label = t.TeamName });
+
+            return Json(filteredTeams, JsonRequestBehavior.AllowGet);
         }
 
         //

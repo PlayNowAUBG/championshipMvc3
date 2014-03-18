@@ -12,5 +12,7 @@ namespace ChampionshipMvc3.Models.Interfaces
         Team GetModel();
         ICollection<Team> GetAllTeams();
         void SaveChanges();
+        Team FindTeamByName(string teamName);
+        bool CheckTeamPass(string teamPass, Team playerTeam);
     }
 }
