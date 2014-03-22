@@ -99,6 +99,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PlayerController.cs" />
+    <Compile Include="Controllers\PlayfieldController.cs" />
     <Compile Include="Controllers\ReservationController.cs" />
     <Compile Include="Controllers\TeamController.cs" />
     <Compile Include="Controllers\TournamentController.cs" />
@@ -108,7 +109,9 @@
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\Enums\PlayerType.cs" />
     <Compile Include="Models\Interfaces\IPlayerRepository.cs" />
+    <Compile Include="Models\Interfaces\IPlayfieldRepository.cs" />
     <Compile Include="Models\Interfaces\IReservationRepository.cs" />
+    <Compile Include="Models\Interfaces\IScheduleRepository.cs" />
     <Compile Include="Models\Interfaces\ITeamRepository.cs" />
     <Compile Include="Models\DataContext\PlayNow.designer.cs">
       <AutoGen>True</AutoGen>
@@ -117,7 +120,9 @@
     </Compile>
     <Compile Include="Models\Interfaces\ITournamentRepository.cs" />
     <Compile Include="Models\Repositories\PlayerRepository.cs" />
+    <Compile Include="Models\Repositories\PlayfieldRepository.cs" />
     <Compile Include="Models\Repositories\ReservationRepository.cs" />
+    <Compile Include="Models\Repositories\ScheduleRepository.cs" />
     <Compile Include="Models\Repositories\TeamRepository.cs" />
     <Compile Include="Models\Repositories\TournamentRepository.cs" />
     <Compile Include="Models\RepositoryBase.cs" />
@@ -179,6 +184,7 @@
     <Content Include="Content\themes\base\minified\jquery.ui.tabs.min.css" />
     <Content Include="Content\themes\base\minified\jquery.ui.theme.min.css" />
     <Content Include="Global.asax" />
+    <Content Include="Images\s_k_lovendom5.jpg" />
     <Content Include="Models\DataContext\PlayNow.dbml">
       <Generator>MSLinqToSQLGenerator</Generator>
       <LastGenOutput>PlayNow.designer.cs</LastGenOutput>
@@ -229,6 +235,7 @@
     <Content Include="Views\Account\_Register.cshtml" />
     <Content Include="Views\Account\RegisterTeam.cshtml" />
     <Content Include="Views\Account\RegisterPlayer.cshtml" />
+    <Content Include="Views\Playfield\CreatePlayfield.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

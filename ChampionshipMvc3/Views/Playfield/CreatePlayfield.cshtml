@@ -32,14 +32,20 @@
         <div>
             <img src="../Images/s_k_lovendom5.jpg" />
         </div>
-        <div>
-            <input type="file" id="fileInput" />
-        </div>
+        
         <p>
             <input type="submit" value="Create" />
         </p>
     </fieldset>
 }
+
+        <div>
+            <form method="post">
+                <input type="file" id="fileInput" />
+                <input type="submit" id="submitImage" value="submitImage"/>
+            </form>
+        </div>
+        
 
 <div>
     @Html.ActionLink("Back to List", "Index")
