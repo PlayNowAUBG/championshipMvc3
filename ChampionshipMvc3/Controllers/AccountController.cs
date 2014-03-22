@@ -101,7 +101,7 @@ namespace ChampionshipMvc3.Controllers
 
                     playerModel.UserId = (Guid)Membership.GetUser(regModel.UserName).ProviderUserKey;
                     playerModel.Team = teamModel;
-                    playerModel.PlayerType = PlayerType.Captain; //enum necessary
+                    playerModel.PlayerType = PlayerType.Captain.ToString(); //enum necessary
                     playerRepository.AddNewPlayer(playerModel);
                 }
                 return RedirectToAction("Index", "Home");
