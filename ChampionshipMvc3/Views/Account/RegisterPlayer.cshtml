@@ -1,4 +1,5 @@
-﻿@model ChampionshipMvc3.Models.DataContext.Team
+﻿
+@model ChampionshipMvc3.Models.DataContext.Team
 
 @{
     ViewBag.Title = "RegisterPlayer";
@@ -6,39 +7,44 @@
 
 <h2>RegisterPlayer</h2>
 
-<script src="@Url.Content("~/Scripts/CustomScripts/autocomplete.js")"></script>
+<link href="@Url.Content("~/Content/bootstrap.css")" rel="stylesheet" type="text/css" />
 <script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/CustomScripts/autocomplete.js")"></script>
 <script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/bootstrap.js")" type="text/javascript"></script>
 
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body">
+                @using (Html.BeginForm()) {
+                    <fieldset>
 
-@using (Html.BeginForm()) {
-    <fieldset>
-
-        @Html.Partial("~/Views/Account/_Register.cshtml", new ChampionshipMvc3.Models.RegisterModel())
+                        @Html.Partial("~/Views/Account/_Register.cshtml", new ChampionshipMvc3.Models.RegisterModel())
             
-        <div class="editor-label">
-            @Html.LabelFor(model => model.TeamName)
-        </div>
-        <div class="editor-field">
-            @Html.TextBoxFor(model => model.TeamName, new { data_autocomplete = Url.Action("FilterTeams", "Account") })
-            @Html.ValidationMessageFor(model => model.TeamName)
-        </div>
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.TeamName)
+                        </div>
+                        <div class="editor-field">
+                            @Html.TextBoxFor(model => model.TeamName, new { data_autocomplete = Url.Action("FilterTeams", "Account") })
+                            @Html.ValidationMessageFor(model => model.TeamName)
+                        </div>
 
-        <div class="hidden">
-            <div class="editor-label">
-                @Html.LabelFor(model => model.TeamPassword)
-            </div>
-            <div class="editor-field">
-                @Html.TextBoxFor(model => model.TeamPassword)
-                @Html.ValidationMessageFor(model => model.TeamPassword)
+                        <div class="hidden">
+                            <div class="editor-label">
+                                @Html.LabelFor(model => model.TeamPassword)
+                            </div>
+                            <div class="editor-field">
+                                @Html.TextBoxFor(model => model.TeamPassword)
+                                @Html.ValidationMessageFor(model => model.TeamPassword)
+                            </div>
+                        </div>
+                        <p>
+                            <input type="submit" value="Register" />
+                        </p>
+                    </fieldset>
+                }
             </div>
         </div>
-        <p>
-            <input type="submit" value="Register" />
-        </p>
-    </fieldset>
-}
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
+    </div>
 </div>
