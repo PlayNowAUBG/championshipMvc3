@@ -9,7 +9,9 @@ namespace ChampionshipMvc3.Models.Interfaces
     public interface IPlayfieldRepository
     {
         void AddNewPlayfield(Playfield playfield);
+        ICollection<Playfield> GetAllPlayfields();
         Playfield GetModel();
+        Playfield GetPlayfieldById(Guid id);
         void SaveChanges();
     }
 }

@@ -37,11 +37,13 @@ namespace ChampionshipMvc3.Controllers
         //
         // GET: /Playfield/Details/5
 
-        public ActionResult Details(int id)
+        public ActionResult Details(Guid id)
         {
-            return View();
+            var playfield = playfieldRepository.GetPlayfieldById(id);
+            return View("PlayfieldDetails", playfield);
         }
 
+        
         //
         // GET: /Playfield/Create
 
@@ -63,7 +65,7 @@ namespace ChampionshipMvc3.Controllers
                     Schedule teamSchedule = new Schedule();
                     scheduleRepository.AddNewSchedule(teamSchedule);
                     playfieldModel.Schedule = teamSchedule;
-                    playfieldModel.ImageLink = SaveToServer(fileViewModel);
+                    playfieldModel.ImageLink = SaveToServer(fileViewModel).Replace("~/", string.Empty);
                     playfieldRepository.AddNewPlayfield(playfieldModel);
                 }
 

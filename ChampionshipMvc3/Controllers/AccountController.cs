@@ -121,25 +121,24 @@ namespace ChampionshipMvc3.Controllers
         {
             if (ModelState.IsValid)
             {
+                //TODO: CHECK TEAM PASSWORD THEN REGISTER PLAYER
+                //TODO: SHEDULE INITIALIZE PLAYER AND TEAM
 
                 var playerTeam = teamRepository.FindTeamByName(teamModel.TeamName);
-                if (teamRepository.CheckTeamPass(teamModel.TeamPassword, playerTeam))
+
+                //Attempt to register the user
+                MembershipCreateStatus createStatus = RegisterUser(regModel);
+
+                if (createStatus == MembershipCreateStatus.Success)
                 {
-
-                    //Attempt to register the user
-                    MembershipCreateStatus createStatus = RegisterUser(regModel);
-
-                    if (createStatus == MembershipCreateStatus.Success)
-                    {
-                        FormsAuthentication.SetAuthCookie(regModel.UserName, false /* createPersistentCookie */);
+                    FormsAuthentication.SetAuthCookie(regModel.UserName, false /* createPersistentCookie */);
                         
-                        playerModel.Team = playerTeam;
-                        playerModel.UserId = (Guid)Membership.GetUser(regModel.UserName).ProviderUserKey;
-                        playerModel.PlayerType = PlayerType.RegularPlayer.ToString();//enum necessary
-                        playerRepository.AddNewPlayer(playerModel);
-                    }
-                    return RedirectToAction("Index", "Home");
+                    playerModel.Team = playerTeam;
+                    playerModel.UserId = (Guid)Membership.GetUser(regModel.UserName).ProviderUserKey;
+                    playerModel.PlayerType = PlayerType.RegularPlayer.ToString();//enum necessary
+                    playerRepository.AddNewPlayer(playerModel);
                 }
+                return RedirectToAction("Index", "Home");
             }
 
             return View(registerPlayerView);

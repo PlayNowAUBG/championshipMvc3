@@ -22,6 +22,17 @@ namespace ChampionshipMvc3.Models.Repositories
             return new Playfield();
         }
 
+        public ICollection<Playfield> GetAllPlayfields()
+        {
+            return RepositoryBase.DataContext.Playfields.ToList();
+        }
+
+        public Playfield GetPlayfieldById(Guid id)
+        {
+            Playfield playfield = RepositoryBase.DataContext.Playfields
+                                    .Where(p => p.PLayfieldID == id).FirstOrDefault();
+            return playfield;
+        }
 
         public void SaveChanges()
         {

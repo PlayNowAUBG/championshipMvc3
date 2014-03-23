@@ -202,7 +202,9 @@
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\CustomScripts\autoComplete.js" />
+    <Content Include="Scripts\CustomScripts\playfieldJS.js" />
     <Content Include="Scripts\CustomScripts\popup.js" />
+    <Content Include="Scripts\CustomScripts\regPopUp.js" />
     <Content Include="Scripts\jquery-1.7.1.js" />
     <Content Include="Scripts\jquery-1.7.1.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
@@ -250,6 +252,7 @@
     <Content Include="Views\Account\RegisterPlayer.cshtml" />
     <Content Include="Views\_FileUpload.cshtml" />
     <Content Include="Views\Playfield\CreatePlayfield.cshtml" />
+    <Content Include="Views\Playfield\PlayfieldDetails.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
