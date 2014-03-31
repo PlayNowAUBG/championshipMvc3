@@ -10,7 +10,10 @@ namespace ChampionshipMvc3.Models.Interfaces
     {
         void AddNewPlayer(Player player);
         Player GetModel();
+        Player GetPlayerById(Guid playerId);
+        ICollection<Player> GetAllUnapprovedPlayers();
         ICollection<Player> GetAllPlayers();
+        void ApprovePlayer(Guid playerId);
         void SaveChanges();
     }
 }

@@ -43,7 +43,9 @@
     <Reference Include="System.Data.Entity" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
-    <Reference Include="System.Data.Linq" />
+    <Reference Include="System.Data.Linq">
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Drawing" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
@@ -98,6 +100,7 @@
   <ItemGroup>
     <Compile Include="Common\ExtensionMethods.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PlayerController.cs" />
     <Compile Include="Controllers\PlayfieldController.cs" />
@@ -202,6 +205,7 @@
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\CustomScripts\autoComplete.js" />
+    <Content Include="Scripts\CustomScripts\adminJS.js" />
     <Content Include="Scripts\CustomScripts\playfieldJS.js" />
     <Content Include="Scripts\CustomScripts\popup.js" />
     <Content Include="Scripts\CustomScripts\regPopUp.js" />
@@ -253,6 +257,8 @@
     <Content Include="Views\_FileUpload.cshtml" />
     <Content Include="Views\Playfield\CreatePlayfield.cshtml" />
     <Content Include="Views\Playfield\PlayfieldDetails.cshtml" />
+    <Content Include="Views\Admin\AdminView.cshtml" />
+    <Content Include="Views\Shared\_Schedule.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -102,6 +102,7 @@ namespace ChampionshipMvc3.Controllers
                     playerModel.UserId = (Guid)Membership.GetUser(regModel.UserName).ProviderUserKey;
                     playerModel.Team = teamModel;
                     playerModel.PlayerType = PlayerType.Captain.ToString(); //enum necessary
+                    playerModel.IsApproved = false;
                     playerRepository.AddNewPlayer(playerModel);
                 }
                 return RedirectToAction("Index", "Home");
@@ -122,7 +123,7 @@ namespace ChampionshipMvc3.Controllers
             if (ModelState.IsValid)
             {
                 //TODO: CHECK TEAM PASSWORD THEN REGISTER PLAYER
-                //TODO: SHEDULE INITIALIZE PLAYER AND TEAM
+                //TODO: SCHEDULE INITIALIZE PLAYER AND TEAM
 
                 var playerTeam = teamRepository.FindTeamByName(teamModel.TeamName);
 
@@ -136,6 +137,7 @@ namespace ChampionshipMvc3.Controllers
                     playerModel.Team = playerTeam;
                     playerModel.UserId = (Guid)Membership.GetUser(regModel.UserName).ProviderUserKey;
                     playerModel.PlayerType = PlayerType.RegularPlayer.ToString();//enum necessary
+                    playerModel.IsApproved = false;
                     playerRepository.AddNewPlayer(playerModel);
                 }
                 return RedirectToAction("Index", "Home");

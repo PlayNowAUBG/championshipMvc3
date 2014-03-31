@@ -48,6 +48,7 @@ namespace ChampionshipMvc3.Models.Repositories
                 Day newDay = new Day();
                 newDay.DaysID = Guid.NewGuid();
                 newDay.DayName = ((DaysEnum)dayIndex).ToString();
+                newDay.DayOrderID = dayIndex+1;
                 newDay.Schedule = schedule;
 
                 AddHoursToDay(newDay);

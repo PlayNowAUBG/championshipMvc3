@@ -26,6 +26,25 @@ namespace ChampionshipMvc3.Models.Repositories
             return RepositoryBase.DataContext.Players.ToList();
         }
 
+        public ICollection<Player> GetAllUnapprovedPlayers()
+        {
+            return RepositoryBase.DataContext.Players
+                                 .Where(p => p.IsApproved == false).ToList();
+        }
+
+        public Player GetPlayerById(Guid playerId)
+        {
+            return RepositoryBase.DataContext.Players
+                                 .Where(p => p.PlayerID == playerId).FirstOrDefault();
+        }
+
+        public void ApprovePlayer(Guid playerId)
+        {
+            var player = this.GetPlayerById(playerId);
+            player.IsApproved = true;
+            this.SaveChanges();
+        }
+
         public void SaveChanges()
         {
             RepositoryBase.DataContext.SubmitChanges();

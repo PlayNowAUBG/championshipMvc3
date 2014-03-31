@@ -8,25 +8,32 @@ using System.Web.Mvc;
 
 namespace ChampionshipMvc3.Controllers
 {
-    public class PlayerController : Controller
+    public class AdminController : Controller
     {
-        private IPlayerRepository playerRepository;
-        
-        //
-        // GET: /Player/
+        //TODO: Approve refreshes page;
+        private const string adminViewName = "AdminView";
 
-        public PlayerController()
+        private IPlayerRepository playerRepository;
+
+        public AdminController()
         {
             playerRepository = new PlayerRepository();
         }
+        //
+        // GET: /AdminPlayfield/
 
         public ActionResult Index()
         {
-            return View();
+            return View(adminViewName, playerRepository.GetAllUnapprovedPlayers());
         }
 
+        public ActionResult Approve(Guid playerID)
+        {
+            playerRepository.ApprovePlayer(playerID);
+            return View(adminViewName, playerRepository.GetAllUnapprovedPlayers());
+        }
         //
-        // GET: /Player/Details/5
+        // GET: /AdminPlayfield/Details/5
 
         public ActionResult Details(int id)
         {
@@ -34,17 +41,15 @@ namespace ChampionshipMvc3.Controllers
         }
 
         //
-        // GET: /Player/Create
+        // GET: /AdminPlayfield/Create
 
         public ActionResult Create()
         {
-           var model = playerRepository.GetAllUnapprovedPlayers();
-           
-            return View(model);
+            return View();
         } 
 
         //
-        // POST: /Player/Create
+        // POST: /AdminPlayfield/Create
 
         [HttpPost]
         public ActionResult Create(FormCollection collection)
@@ -62,7 +67,7 @@ namespace ChampionshipMvc3.Controllers
         }
         
         //
-        // GET: /Player/Edit/5
+        // GET: /AdminPlayfield/Edit/5
  
         public ActionResult Edit(int id)
         {
@@ -70,7 +75,7 @@ namespace ChampionshipMvc3.Controllers
         }
 
         //
-        // POST: /Player/Edit/5
+        // POST: /AdminPlayfield/Edit/5
 
         [HttpPost]
         public ActionResult Edit(int id, FormCollection collection)
@@ -88,7 +93,7 @@ namespace ChampionshipMvc3.Controllers
         }
 
         //
-        // GET: /Player/Delete/5
+        // GET: /AdminPlayfield/Delete/5
  
         public ActionResult Delete(int id)
         {
@@ -96,7 +101,7 @@ namespace ChampionshipMvc3.Controllers
         }
 
         //
-        // POST: /Player/Delete/5
+        // POST: /AdminPlayfield/Delete/5
 
         [HttpPost]
         public ActionResult Delete(int id, FormCollection collection)
