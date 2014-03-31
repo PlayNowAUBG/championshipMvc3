@@ -1,0 +1,54 @@
+﻿@model IEnumerable<ChampionshipMvc3.Models.DataContext.Player>
+
+@{
+    ViewBag.Title = "AdminView";
+}
+
+<script src="../../Scripts/CustomScripts/adminJS.js"></script>
+
+<h2>AdminPlayfieldView</h2>
+
+<table>
+    <tr>
+        <th>
+            FirstName
+        </th>
+        <th>
+            LastName
+        </th>
+        <th>
+            Team Name
+        </th>
+        <th>
+            PlayerType
+        </th>
+        <th>
+            IsApproved
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.FirstName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LastName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Team.TeamName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PlayerType)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IsApproved)
+        </td>
+        <td>
+            <input type="button" value="Approve" class="approveButtonClass"
+                data-assigned-id="@item.PlayerID"/>
+        </td>
+    </tr>
+}
+
+</table>

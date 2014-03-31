@@ -6,8 +6,8 @@
 
 <h2>PlayfieldDetails</h2>
 
-<fieldset>
-    <legend>@Html.DisplayFor(model => model.Name)</legend>
+<div>
+    <label>@Html.DisplayFor(model => model.Name)</label>
 
     <div style="float:left">
         <img src="../../@Model.ImageLink" width="340" height="300" />
@@ -51,5 +51,12 @@
             </tr>
         </table>
     </div>
-</fieldset>
+</div>
+<br />
+<br />
+<br />
+<div>
+    @Html.Partial("_Schedule", Model.Schedule)
+</div>
+
 

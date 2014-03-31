@@ -1,0 +1,57 @@
+﻿@model ChampionshipMvc3.Models.DataContext.Schedule
+
+<table>
+    <tr>
+        @foreach (ChampionshipMvc3.Models.DataContext.Day day in Model.Days.OrderBy(d => d.DayOrderID))
+        {
+            <td>
+                <label>@day.DayName</label>
+                <table>
+                    @foreach (var hour in @day.Hours)
+                    {
+                        <tr>
+                            <td>@hour._9till10</td>
+                        </tr>
+                        <tr>
+                            <td>@hour._10till11</td>
+                        </tr>
+                        <tr>
+                            <td>@hour._11till12</td>
+                        </tr>
+                        <tr>
+                            <td>@hour._12till13</td>
+                        </tr>
+                        <tr>
+                            <td>@hour._13till14</td>
+                        </tr>
+                        <tr>
+                            <td>@hour._14till15</td>
+                        </tr>
+                        <tr>
+                            <td>@hour._15till16</td>
+                        </tr>
+                        <tr>
+                            <td>@hour._16till17</td>
+                        </tr>
+                        <tr>
+                            <td>@hour._17till18</td>
+                        </tr>
+                        <tr>
+                            <td>@hour._18till19</td>
+                        </tr>
+                        <tr>
+                            <td>@hour._19till20</td>
+                        </tr>
+                        <tr>
+                            <td>@hour._20till21</td>
+                        </tr>
+                        <tr>
+                            <td>@hour._21till22</td>
+                        </tr>
+                    }
+                </table>
+            </td>
+        }
+    </tr>
+
+</table>
