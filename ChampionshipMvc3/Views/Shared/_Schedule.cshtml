@@ -1,12 +1,16 @@
 ﻿@model ChampionshipMvc3.Models.DataContext.Schedule
 
-<table>
+    <script src="@Url.Content("~/Scripts/CustomScripts/jQueryLibrary.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/CustomScripts/tableFillerScheduleLayout.js")" type="text/javascript"></script>
+
+<table id="structureTable">
     <tr>
         @foreach (ChampionshipMvc3.Models.DataContext.Day day in Model.Days.OrderBy(d => d.DayOrderID))
         {
             <td>
                 <label>@day.DayName</label>
-                <table>
+
+                <table id="scheduleTableID">
                     @foreach (var hour in @day.Hours)
                     {
                         <tr>
