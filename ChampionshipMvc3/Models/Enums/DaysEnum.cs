@@ -7,12 +7,12 @@ namespace ChampionshipMvc3.Models.Enums
 {
     public enum DaysEnum
     {
-        Monday = 0,
-        Tuesday = 1,
-        Wednesday = 2,
-        Thursday = 3,
-        Friday = 4,
-        Saturday = 5,
-        Sunday = 6
+        Mon = 0,
+        Tues = 1,
+        Wed = 2,
+        Thur = 3,
+        Fri = 4,
+        Sat = 5,
+        Sun = 6
     }
 }
