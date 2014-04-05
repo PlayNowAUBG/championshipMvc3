@@ -26,13 +26,6 @@ namespace ChampionshipMvc3.Controllers
             scheduleRepository = new ScheduleRepository();
         }
 
-        //
-        // GET: /Playfield/
-
-        public ActionResult Index()
-        {
-            return View();
-        }
 
         //
         // GET: /Playfield/Details/5
@@ -77,59 +70,13 @@ namespace ChampionshipMvc3.Controllers
             }
         }
 
-
-
-        //
-        // GET: /Playfield/Edit/5
-
-        public ActionResult Edit(int id)
+        public ActionResult ReservePlayfield(Guid hourId)
         {
-            return View();
-        }
-
-        //
-        // POST: /Playfield/Edit/5
-
-        [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add update logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        //
-        // GET: /Playfield/Delete/5
-
-        public ActionResult Delete(int id)
-        {
-            return View();
+            return RedirectToAction("Index", "Home");
         }
 
         //
         // POST: /Playfield/Delete/5
-
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
 
         private string SaveToServer(FileViewModel fileViewModel)
         {

@@ -1,7 +1,10 @@
 ﻿@model ChampionshipMvc3.Models.DataContext.Schedule
+    
 
-    <script src="@Url.Content("~/Scripts/CustomScripts/jQueryLibrary.js")" type="text/javascript"></script>
-    <script src="@Url.Content("~/Scripts/CustomScripts/tableFillerScheduleLayout.js")" type="text/javascript"></script>
+<link href="../../Content/bootstrapPlayNow.css" rel="stylesheet" />
+<script src="../../Scripts/CustomScripts/jQueryLibrary.js"></script>
+<script src="@Url.Content("~/Scripts/CustomScripts/tableFillerScheduleLayout.js")" type="text/javascript"></script>
+<script src="../../Scripts/CustomScripts/bootstrap.minPlayNow.js"></script>
 
 <table id="structureTable">
     <tr>
@@ -14,43 +17,121 @@
                     @foreach (var hour in @day.Hours)
                     {
                         <tr>
-                            <td>@hour._9till10</td>
+                            <td>
+                                @hour._9till10
+                                <a class="btn btn-primary btn-lg reservationAnchor" data-toggle="modal" data-target="#myModal"
+                                    data-assigned-id="@hour.HoursID" data-dayId="@day.DaysID">
+                                  Reserve
+                                </a>
+                            </td>
                         </tr>
                         <tr>
-                            <td>@hour._10till11</td>
+                            <td>
+                                @hour._10till11
+                                <a class="btn btn-primary btn-lg reservationAnchor" data-toggle="modal" data-target="#myModal"
+                                    data-assigned-id="@hour.HoursID" data-dayId="@day.DaysID">
+                                  Reserve
+                                </a>
+                            </td>
                         </tr>
                         <tr>
-                            <td>@hour._11till12</td>
+                            <td>
+                                @hour._11till12
+                                <a class="btn btn-primary btn-lg reservationAnchor" data-toggle="modal" data-target="#myModal"
+                                    data-assigned-id="@hour.HoursID" data-dayId="@day.DaysID">
+                                  Reserve
+                                </a>
+                            </td>
                         </tr>
                         <tr>
-                            <td>@hour._12till13</td>
+                            <td>
+                                @hour._12till13
+                                <a class="btn btn-primary btn-lg reservationAnchor" data-toggle="modal" data-target="#myModal"
+                                    data-assigned-id="@hour.HoursID" data-dayId="@day.DaysID">
+                                  Reserve
+                                </a>
+                            </td>
                         </tr>
                         <tr>
-                            <td>@hour._13till14</td>
+                            <td>
+                                @hour._13till14
+                                <a class="btn btn-primary btn-lg reservationAnchor" data-toggle="modal" data-target="#myModal"
+                                    data-assigned-id="@hour.HoursID" data-dayId="@day.DaysID">
+                                  Reserve
+                                </a>
+                            </td>
                         </tr>
                         <tr>
-                            <td>@hour._14till15</td>
+                            <td>
+                                @hour._14till15
+                                <a class="btn btn-primary btn-lg reservationAnchor" data-toggle="modal" data-target="#myModal"
+                                    data-assigned-id="@hour.HoursID" data-dayId="@day.DaysID">
+                                  Reserve
+                                </a>
+                            </td>
                         </tr>
                         <tr>
-                            <td>@hour._15till16</td>
+                            <td>
+                                @hour._15till16
+                                <a class="btn btn-primary btn-lg reservationAnchor" data-toggle="modal" data-target="#myModal"
+                                    data-assigned-id="@hour.HoursID" data-dayId="@day.DaysID">
+                                  Reserve
+                                </a>
+                            </td>
                         </tr>
                         <tr>
-                            <td>@hour._16till17</td>
+                            <td>
+                                @hour._16till17
+                                <a class="btn btn-primary btn-lg reservationAnchor" data-toggle="modal" data-target="#myModal"
+                                    data-assigned-id="@hour.HoursID" data-dayId="@day.DaysID">
+                                  Reserve
+                                </a>
+                            </td>
                         </tr>
                         <tr>
-                            <td>@hour._17till18</td>
+                            <td>
+                                @hour._17till18
+                                <a class="btn btn-primary btn-lg reservationAnchor" data-toggle="modal" data-target="#myModal"
+                                    data-assigned-id="@hour.HoursID" data-dayId="@day.DaysID">
+                                  Reserve
+                                </a>
+                            </td>
                         </tr>
                         <tr>
-                            <td>@hour._18till19</td>
+                            <td>
+                                @hour._18till19
+                                <a class="btn btn-primary btn-lg reservationAnchor" data-toggle="modal" data-target="#myModal"
+                                    data-assigned-id="@hour.HoursID" data-dayId="@day.DaysID">
+                                  Reserve
+                                </a>
+                            </td>
                         </tr>
                         <tr>
-                            <td>@hour._19till20</td>
+                            <td>
+                                @hour._19till20
+                                <a class="btn btn-primary btn-lg reservationAnchor" data-toggle="modal" data-target="#myModal"
+                                    data-assigned-id="@hour.HoursID" data-dayId="@day.DaysID">
+                                  Reserve
+                                </a>
+                            </td>
                         </tr>
                         <tr>
-                            <td>@hour._20till21</td>
+                            <td>
+                                @hour._20till21
+                                <a class="btn btn-primary btn-lg reservationAnchor" data-toggle="modal" data-target="#myModal"
+                                    data-assigned-id="@hour.HoursID" data-dayId="@day.DaysID">
+                                  Reserve
+                                </a>
+                            </td>
                         </tr>
                         <tr>
-                            <td>@hour._21till22</td>
+                            <td>
+                                @hour._21till22
+                                <a class="btn btn-primary btn-lg reservationAnchor" data-toggle="modal" data-target="#myModal"
+                                    data-assigned-id="@hour.HoursID" data-dayId="@day.DaysID">
+                                  Reserve
+                                </a>
+                            </td>
                         </tr>
                     }
                 </table>
@@ -59,3 +140,26 @@
     </tr>
 
 </table>
+
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+      </div>
+      <div class="modal-body">
+        
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" onclick="">Reserve</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script src="../../Scripts/CustomScripts/reservationJS.js"></script>
