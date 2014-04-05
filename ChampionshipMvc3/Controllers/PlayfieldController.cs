@@ -19,11 +19,13 @@ namespace ChampionshipMvc3.Controllers
         private const string locationString = "~/Images/";
         private IPlayfieldRepository playfieldRepository;
         private IScheduleRepository scheduleRepository;
+        private IReservationRepository reservationRepository;
 
         public PlayfieldController()
         {
             playfieldRepository = new PlayfieldRepository();
             scheduleRepository = new ScheduleRepository();
+            reservationRepository = new ReservationRepository();
         }
 
 
@@ -70,8 +72,26 @@ namespace ChampionshipMvc3.Controllers
             }
         }
 
-        public ActionResult ReservePlayfield(Guid hourId)
+        [AcceptVerbs(HttpVerbs.Post)]
+        [HttpPost]
+        public ActionResult ReservePlayfield(decimal hourInterval, Guid hourId, Guid dayId)
         {
+            //Schedule schedule = scheduleRepository.GetScheduleByDayId(dayId);
+            //Day day = scheduleRepository.GetDayById(dayId);
+            //Playfield playfield = playfieldRepository.GetPlayfieldByScheduleId(schedule.ScheduleID);
+            //Reservation reservation = new Reservation();
+
+            //reservation.ReservationID = Guid.NewGuid();
+            //reservation.DayName = day.DayName;
+            //reservation.StartHour = hourInterval;
+            //reservation.EndHour = hourInterval + 1.0m;
+            //reservation.isApproved = false;
+            //reservation.Playfield = playfield;
+            //reservation.ReservationDate = DateTime.Now;
+            
+
+            //reservationRepository.AddNewReservation(reservation);
+
             return RedirectToAction("Index", "Home");
         }
 

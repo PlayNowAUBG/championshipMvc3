@@ -12,6 +12,7 @@ namespace ChampionshipMvc3.Models.Interfaces
         ICollection<Playfield> GetAllPlayfields();
         Playfield GetModel();
         Playfield GetPlayfieldById(Guid id);
+        Playfield GetPlayfieldByScheduleId(Guid scheduleId);
         void SaveChanges();
     }
 }

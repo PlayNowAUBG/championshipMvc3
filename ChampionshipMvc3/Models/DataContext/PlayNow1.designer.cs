@@ -36,9 +36,6 @@ namespace ChampionshipMvc3.Models.DataContext
     partial void InsertPlayfield(Playfield instance);
     partial void UpdatePlayfield(Playfield instance);
     partial void DeletePlayfield(Playfield instance);
-    partial void InsertReservation(Reservation instance);
-    partial void UpdateReservation(Reservation instance);
-    partial void DeleteReservation(Reservation instance);
     partial void InsertRole(Role instance);
     partial void UpdateRole(Role instance);
     partial void DeleteRole(Role instance);
@@ -72,6 +69,9 @@ namespace ChampionshipMvc3.Models.DataContext
     partial void InsertDay(Day instance);
     partial void UpdateDay(Day instance);
     partial void DeleteDay(Day instance);
+    partial void InsertReservation(Reservation instance);
+    partial void UpdateReservation(Reservation instance);
+    partial void DeleteReservation(Reservation instance);
     #endregion
 		
 		public PlayNowDataContext() : 
@@ -117,14 +117,6 @@ namespace ChampionshipMvc3.Models.DataContext
 			get
 			{
 				return this.GetTable<Playfield>();
-			}
-		}
-		
-		public System.Data.Linq.Table<Reservation> Reservations
-		{
-			get
-			{
-				return this.GetTable<Reservation>();
 			}
 		}
 		
@@ -213,6 +205,14 @@ namespace ChampionshipMvc3.Models.DataContext
 			get
 			{
 				return this.GetTable<Day>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Reservation> Reservations
+		{
+			get
+			{
+				return this.GetTable<Reservation>();
 			}
 		}
 	}
@@ -947,7 +947,7 @@ namespace ChampionshipMvc3.Models.DataContext
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Playfield_Reservation", Storage="_Reservations", ThisKey="PLayfieldID", OtherKey="StadiumID")]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Playfield_Reservation", Storage="_Reservations", ThisKey="PLayfieldID", OtherKey="PlayfieldID")]
 		public EntitySet<Reservation> Reservations
 		{
 			get
@@ -1024,246 +1024,6 @@ namespace ChampionshipMvc3.Models.DataContext
 		{
 			this.SendPropertyChanging();
 			entity.Playfield = null;
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Reservations")]
-	public partial class Reservation : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private System.Guid _ReservationID;
-		
-		private System.DateTime _StartTime;
-		
-		private System.DateTime _EndTime;
-		
-		private System.Guid _StadiumID;
-		
-		private System.Guid _TeamID;
-		
-		private EntityRef<Playfield> _Playfield;
-		
-		private EntityRef<Team> _Team;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnReservationIDChanging(System.Guid value);
-    partial void OnReservationIDChanged();
-    partial void OnStartTimeChanging(System.DateTime value);
-    partial void OnStartTimeChanged();
-    partial void OnEndTimeChanging(System.DateTime value);
-    partial void OnEndTimeChanged();
-    partial void OnStadiumIDChanging(System.Guid value);
-    partial void OnStadiumIDChanged();
-    partial void OnTeamIDChanging(System.Guid value);
-    partial void OnTeamIDChanged();
-    #endregion
-		
-		public Reservation()
-		{
-			this._Playfield = default(EntityRef<Playfield>);
-			this._Team = default(EntityRef<Team>);
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ReservationID", DbType="UniqueIdentifier NOT NULL", IsPrimaryKey=true)]
-		public System.Guid ReservationID
-		{
-			get
-			{
-				return this._ReservationID;
-			}
-			set
-			{
-				if ((this._ReservationID != value))
-				{
-					this.OnReservationIDChanging(value);
-					this.SendPropertyChanging();
-					this._ReservationID = value;
-					this.SendPropertyChanged("ReservationID");
-					this.OnReservationIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_StartTime", DbType="DateTime NOT NULL")]
-		public System.DateTime StartTime
-		{
-			get
-			{
-				return this._StartTime;
-			}
-			set
-			{
-				if ((this._StartTime != value))
-				{
-					this.OnStartTimeChanging(value);
-					this.SendPropertyChanging();
-					this._StartTime = value;
-					this.SendPropertyChanged("StartTime");
-					this.OnStartTimeChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EndTime", DbType="DateTime NOT NULL")]
-		public System.DateTime EndTime
-		{
-			get
-			{
-				return this._EndTime;
-			}
-			set
-			{
-				if ((this._EndTime != value))
-				{
-					this.OnEndTimeChanging(value);
-					this.SendPropertyChanging();
-					this._EndTime = value;
-					this.SendPropertyChanged("EndTime");
-					this.OnEndTimeChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_StadiumID", DbType="UniqueIdentifier NOT NULL")]
-		public System.Guid StadiumID
-		{
-			get
-			{
-				return this._StadiumID;
-			}
-			set
-			{
-				if ((this._StadiumID != value))
-				{
-					if (this._Playfield.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnStadiumIDChanging(value);
-					this.SendPropertyChanging();
-					this._StadiumID = value;
-					this.SendPropertyChanged("StadiumID");
-					this.OnStadiumIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TeamID", DbType="UniqueIdentifier NOT NULL")]
-		public System.Guid TeamID
-		{
-			get
-			{
-				return this._TeamID;
-			}
-			set
-			{
-				if ((this._TeamID != value))
-				{
-					if (this._Team.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnTeamIDChanging(value);
-					this.SendPropertyChanging();
-					this._TeamID = value;
-					this.SendPropertyChanged("TeamID");
-					this.OnTeamIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Playfield_Reservation", Storage="_Playfield", ThisKey="StadiumID", OtherKey="PLayfieldID", IsForeignKey=true)]
-		public Playfield Playfield
-		{
-			get
-			{
-				return this._Playfield.Entity;
-			}
-			set
-			{
-				Playfield previousValue = this._Playfield.Entity;
-				if (((previousValue != value) 
-							|| (this._Playfield.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Playfield.Entity = null;
-						previousValue.Reservations.Remove(this);
-					}
-					this._Playfield.Entity = value;
-					if ((value != null))
-					{
-						value.Reservations.Add(this);
-						this._StadiumID = value.PLayfieldID;
-					}
-					else
-					{
-						this._StadiumID = default(System.Guid);
-					}
-					this.SendPropertyChanged("Playfield");
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Team_Reservation", Storage="_Team", ThisKey="TeamID", OtherKey="TeamID", IsForeignKey=true)]
-		public Team Team
-		{
-			get
-			{
-				return this._Team.Entity;
-			}
-			set
-			{
-				Team previousValue = this._Team.Entity;
-				if (((previousValue != value) 
-							|| (this._Team.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Team.Entity = null;
-						previousValue.Reservations.Remove(this);
-					}
-					this._Team.Entity = value;
-					if ((value != null))
-					{
-						value.Reservations.Add(this);
-						this._TeamID = value.TeamID;
-					}
-					else
-					{
-						this._TeamID = default(System.Guid);
-					}
-					this.SendPropertyChanged("Team");
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
 		}
 	}
 	
@@ -1593,8 +1353,6 @@ namespace ChampionshipMvc3.Models.DataContext
 		
 		private string _CoverImageLink;
 		
-		private EntitySet<Reservation> _Reservations;
-		
 		private EntitySet<TeamsPicture> _TeamsPictures;
 		
 		private EntitySet<TeamsVideo> _TeamsVideos;
@@ -1604,6 +1362,8 @@ namespace ChampionshipMvc3.Models.DataContext
 		private EntitySet<Video> _Videos;
 		
 		private EntitySet<Player> _Players;
+		
+		private EntitySet<Reservation> _Reservations;
 		
 		private EntityRef<Schedule> _Schedule;
 		
@@ -1627,12 +1387,12 @@ namespace ChampionshipMvc3.Models.DataContext
 		
 		public Team()
 		{
-			this._Reservations = new EntitySet<Reservation>(new Action<Reservation>(this.attach_Reservations), new Action<Reservation>(this.detach_Reservations));
 			this._TeamsPictures = new EntitySet<TeamsPicture>(new Action<TeamsPicture>(this.attach_TeamsPictures), new Action<TeamsPicture>(this.detach_TeamsPictures));
 			this._TeamsVideos = new EntitySet<TeamsVideo>(new Action<TeamsVideo>(this.attach_TeamsVideos), new Action<TeamsVideo>(this.detach_TeamsVideos));
 			this._TournamentsTeams = new EntitySet<TournamentsTeam>(new Action<TournamentsTeam>(this.attach_TournamentsTeams), new Action<TournamentsTeam>(this.detach_TournamentsTeams));
 			this._Videos = new EntitySet<Video>(new Action<Video>(this.attach_Videos), new Action<Video>(this.detach_Videos));
 			this._Players = new EntitySet<Player>(new Action<Player>(this.attach_Players), new Action<Player>(this.detach_Players));
+			this._Reservations = new EntitySet<Reservation>(new Action<Reservation>(this.attach_Reservations), new Action<Reservation>(this.detach_Reservations));
 			this._Schedule = default(EntityRef<Schedule>);
 			OnCreated();
 		}
@@ -1761,19 +1521,6 @@ namespace ChampionshipMvc3.Models.DataContext
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Team_Reservation", Storage="_Reservations", ThisKey="TeamID", OtherKey="TeamID")]
-		public EntitySet<Reservation> Reservations
-		{
-			get
-			{
-				return this._Reservations;
-			}
-			set
-			{
-				this._Reservations.Assign(value);
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Team_TeamsPicture", Storage="_TeamsPictures", ThisKey="TeamID", OtherKey="TeamID")]
 		public EntitySet<TeamsPicture> TeamsPictures
 		{
@@ -1839,6 +1586,19 @@ namespace ChampionshipMvc3.Models.DataContext
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Team_Reservation", Storage="_Reservations", ThisKey="TeamID", OtherKey="TeamID")]
+		public EntitySet<Reservation> Reservations
+		{
+			get
+			{
+				return this._Reservations;
+			}
+			set
+			{
+				this._Reservations.Assign(value);
+			}
+		}
+		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Schedule_Team", Storage="_Schedule", ThisKey="ScheduleID", OtherKey="ScheduleID", IsForeignKey=true)]
 		public Schedule Schedule
 		{
@@ -1891,18 +1651,6 @@ namespace ChampionshipMvc3.Models.DataContext
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
-		}
-		
-		private void attach_Reservations(Reservation entity)
-		{
-			this.SendPropertyChanging();
-			entity.Team = this;
-		}
-		
-		private void detach_Reservations(Reservation entity)
-		{
-			this.SendPropertyChanging();
-			entity.Team = null;
 		}
 		
 		private void attach_TeamsPictures(TeamsPicture entity)
@@ -1960,6 +1708,18 @@ namespace ChampionshipMvc3.Models.DataContext
 		}
 		
 		private void detach_Players(Player entity)
+		{
+			this.SendPropertyChanging();
+			entity.Team = null;
+		}
+		
+		private void attach_Reservations(Reservation entity)
+		{
+			this.SendPropertyChanging();
+			entity.Team = this;
+		}
+		
+		private void detach_Reservations(Reservation entity)
 		{
 			this.SendPropertyChanging();
 			entity.Team = null;
@@ -3055,6 +2815,8 @@ namespace ChampionshipMvc3.Models.DataContext
 		
 		private bool _IsApproved;
 		
+		private EntitySet<Reservation> _Reservations;
+		
 		private EntityRef<aspnet_User> _aspnet_User;
 		
 		private EntityRef<Schedule> _Schedule;
@@ -3087,6 +2849,7 @@ namespace ChampionshipMvc3.Models.DataContext
 		
 		public Player()
 		{
+			this._Reservations = new EntitySet<Reservation>(new Action<Reservation>(this.attach_Reservations), new Action<Reservation>(this.detach_Reservations));
 			this._aspnet_User = default(EntityRef<aspnet_User>);
 			this._Schedule = default(EntityRef<Schedule>);
 			this._Team = default(EntityRef<Team>);
@@ -3285,6 +3048,19 @@ namespace ChampionshipMvc3.Models.DataContext
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Player_Reservation", Storage="_Reservations", ThisKey="PlayerID", OtherKey="PlayerID")]
+		public EntitySet<Reservation> Reservations
+		{
+			get
+			{
+				return this._Reservations;
+			}
+			set
+			{
+				this._Reservations.Assign(value);
+			}
+		}
+		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="aspnet_User_Player", Storage="_aspnet_User", ThisKey="UserId", OtherKey="UserId", IsForeignKey=true)]
 		public aspnet_User aspnet_User
 		{
@@ -3405,6 +3181,18 @@ namespace ChampionshipMvc3.Models.DataContext
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
+		}
+		
+		private void attach_Reservations(Reservation entity)
+		{
+			this.SendPropertyChanging();
+			entity.Player = this;
+		}
+		
+		private void detach_Reservations(Reservation entity)
+		{
+			this.SendPropertyChanging();
+			entity.Player = null;
 		}
 	}
 	
@@ -3608,6 +3396,383 @@ namespace ChampionshipMvc3.Models.DataContext
 		{
 			this.SendPropertyChanging();
 			entity.Day = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Reservations")]
+	public partial class Reservation : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private System.Guid _ReservationID;
+		
+		private decimal _StartHour;
+		
+		private decimal _EndHour;
+		
+		private System.Guid _PlayfieldID;
+		
+		private System.Nullable<System.Guid> _TeamID;
+		
+		private bool _isApproved;
+		
+		private System.Nullable<System.Guid> _PlayerID;
+		
+		private System.Nullable<System.DateTime> _ReservationDate;
+		
+		private string _DayName;
+		
+		private EntityRef<Player> _Player;
+		
+		private EntityRef<Playfield> _Playfield;
+		
+		private EntityRef<Team> _Team;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnReservationIDChanging(System.Guid value);
+    partial void OnReservationIDChanged();
+    partial void OnStartHourChanging(decimal value);
+    partial void OnStartHourChanged();
+    partial void OnEndHourChanging(decimal value);
+    partial void OnEndHourChanged();
+    partial void OnPlayfieldIDChanging(System.Guid value);
+    partial void OnPlayfieldIDChanged();
+    partial void OnTeamIDChanging(System.Nullable<System.Guid> value);
+    partial void OnTeamIDChanged();
+    partial void OnisApprovedChanging(bool value);
+    partial void OnisApprovedChanged();
+    partial void OnPlayerIDChanging(System.Nullable<System.Guid> value);
+    partial void OnPlayerIDChanged();
+    partial void OnReservationDateChanging(System.Nullable<System.DateTime> value);
+    partial void OnReservationDateChanged();
+    partial void OnDayNameChanging(string value);
+    partial void OnDayNameChanged();
+    #endregion
+		
+		public Reservation()
+		{
+			this._Player = default(EntityRef<Player>);
+			this._Playfield = default(EntityRef<Playfield>);
+			this._Team = default(EntityRef<Team>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ReservationID", DbType="UniqueIdentifier NOT NULL", IsPrimaryKey=true)]
+		public System.Guid ReservationID
+		{
+			get
+			{
+				return this._ReservationID;
+			}
+			set
+			{
+				if ((this._ReservationID != value))
+				{
+					this.OnReservationIDChanging(value);
+					this.SendPropertyChanging();
+					this._ReservationID = value;
+					this.SendPropertyChanged("ReservationID");
+					this.OnReservationIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_StartHour", DbType="Decimal(18,0) NOT NULL")]
+		public decimal StartHour
+		{
+			get
+			{
+				return this._StartHour;
+			}
+			set
+			{
+				if ((this._StartHour != value))
+				{
+					this.OnStartHourChanging(value);
+					this.SendPropertyChanging();
+					this._StartHour = value;
+					this.SendPropertyChanged("StartHour");
+					this.OnStartHourChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EndHour", DbType="Decimal(18,0) NOT NULL")]
+		public decimal EndHour
+		{
+			get
+			{
+				return this._EndHour;
+			}
+			set
+			{
+				if ((this._EndHour != value))
+				{
+					this.OnEndHourChanging(value);
+					this.SendPropertyChanging();
+					this._EndHour = value;
+					this.SendPropertyChanged("EndHour");
+					this.OnEndHourChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PlayfieldID", DbType="UniqueIdentifier NOT NULL")]
+		public System.Guid PlayfieldID
+		{
+			get
+			{
+				return this._PlayfieldID;
+			}
+			set
+			{
+				if ((this._PlayfieldID != value))
+				{
+					if (this._Playfield.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnPlayfieldIDChanging(value);
+					this.SendPropertyChanging();
+					this._PlayfieldID = value;
+					this.SendPropertyChanged("PlayfieldID");
+					this.OnPlayfieldIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TeamID", DbType="UniqueIdentifier")]
+		public System.Nullable<System.Guid> TeamID
+		{
+			get
+			{
+				return this._TeamID;
+			}
+			set
+			{
+				if ((this._TeamID != value))
+				{
+					if (this._Team.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnTeamIDChanging(value);
+					this.SendPropertyChanging();
+					this._TeamID = value;
+					this.SendPropertyChanged("TeamID");
+					this.OnTeamIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_isApproved", DbType="Bit NOT NULL")]
+		public bool isApproved
+		{
+			get
+			{
+				return this._isApproved;
+			}
+			set
+			{
+				if ((this._isApproved != value))
+				{
+					this.OnisApprovedChanging(value);
+					this.SendPropertyChanging();
+					this._isApproved = value;
+					this.SendPropertyChanged("isApproved");
+					this.OnisApprovedChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PlayerID", DbType="UniqueIdentifier")]
+		public System.Nullable<System.Guid> PlayerID
+		{
+			get
+			{
+				return this._PlayerID;
+			}
+			set
+			{
+				if ((this._PlayerID != value))
+				{
+					if (this._Player.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnPlayerIDChanging(value);
+					this.SendPropertyChanging();
+					this._PlayerID = value;
+					this.SendPropertyChanged("PlayerID");
+					this.OnPlayerIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ReservationDate", DbType="Date")]
+		public System.Nullable<System.DateTime> ReservationDate
+		{
+			get
+			{
+				return this._ReservationDate;
+			}
+			set
+			{
+				if ((this._ReservationDate != value))
+				{
+					this.OnReservationDateChanging(value);
+					this.SendPropertyChanging();
+					this._ReservationDate = value;
+					this.SendPropertyChanged("ReservationDate");
+					this.OnReservationDateChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DayName", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string DayName
+		{
+			get
+			{
+				return this._DayName;
+			}
+			set
+			{
+				if ((this._DayName != value))
+				{
+					this.OnDayNameChanging(value);
+					this.SendPropertyChanging();
+					this._DayName = value;
+					this.SendPropertyChanged("DayName");
+					this.OnDayNameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Player_Reservation", Storage="_Player", ThisKey="PlayerID", OtherKey="PlayerID", IsForeignKey=true)]
+		public Player Player
+		{
+			get
+			{
+				return this._Player.Entity;
+			}
+			set
+			{
+				Player previousValue = this._Player.Entity;
+				if (((previousValue != value) 
+							|| (this._Player.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Player.Entity = null;
+						previousValue.Reservations.Remove(this);
+					}
+					this._Player.Entity = value;
+					if ((value != null))
+					{
+						value.Reservations.Add(this);
+						this._PlayerID = value.PlayerID;
+					}
+					else
+					{
+						this._PlayerID = default(Nullable<System.Guid>);
+					}
+					this.SendPropertyChanged("Player");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Playfield_Reservation", Storage="_Playfield", ThisKey="PlayfieldID", OtherKey="PLayfieldID", IsForeignKey=true)]
+		public Playfield Playfield
+		{
+			get
+			{
+				return this._Playfield.Entity;
+			}
+			set
+			{
+				Playfield previousValue = this._Playfield.Entity;
+				if (((previousValue != value) 
+							|| (this._Playfield.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Playfield.Entity = null;
+						previousValue.Reservations.Remove(this);
+					}
+					this._Playfield.Entity = value;
+					if ((value != null))
+					{
+						value.Reservations.Add(this);
+						this._PlayfieldID = value.PLayfieldID;
+					}
+					else
+					{
+						this._PlayfieldID = default(System.Guid);
+					}
+					this.SendPropertyChanged("Playfield");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Team_Reservation", Storage="_Team", ThisKey="TeamID", OtherKey="TeamID", IsForeignKey=true)]
+		public Team Team
+		{
+			get
+			{
+				return this._Team.Entity;
+			}
+			set
+			{
+				Team previousValue = this._Team.Entity;
+				if (((previousValue != value) 
+							|| (this._Team.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Team.Entity = null;
+						previousValue.Reservations.Remove(this);
+					}
+					this._Team.Entity = value;
+					if ((value != null))
+					{
+						value.Reservations.Add(this);
+						this._TeamID = value.TeamID;
+					}
+					else
+					{
+						this._TeamID = default(Nullable<System.Guid>);
+					}
+					this.SendPropertyChanged("Team");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
 		}
 	}
 }

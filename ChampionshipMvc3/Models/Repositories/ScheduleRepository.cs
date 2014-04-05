@@ -41,6 +41,29 @@ namespace ChampionshipMvc3.Models.Repositories
             throw new NotImplementedException();
         }
 
+        public Schedule GetScheduleByDayId(Guid dayId)
+        {
+            Guid scheduleId = RepositoryBase.DataContext.Days
+                                            .Where(d => d.DaysID == dayId)
+                                            .Select(s => s.ScheduleID)
+                                            .FirstOrDefault();
+
+            Schedule schedule = RepositoryBase.DataContext.Schedules
+                                                .Where(s => s.ScheduleID == scheduleId)
+                                                .FirstOrDefault();
+
+            return schedule;
+        }
+
+        public Day GetDayById(Guid dayId)
+        {
+            Day day = RepositoryBase.DataContext.Days
+                                    .Where(d => d.DaysID == dayId)
+                                    .FirstOrDefault();
+
+            return day;
+        }
+
         private void AddDaysToSchedule(Schedule schedule)
         {
             for (int dayIndex = 0; dayIndex < 7; dayIndex++)

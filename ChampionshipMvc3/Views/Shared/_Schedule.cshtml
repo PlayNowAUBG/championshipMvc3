@@ -1,7 +1,6 @@
 ﻿@model ChampionshipMvc3.Models.DataContext.Schedule
     
-
-<link href="../../Content/bootstrapPlayNow.css" rel="stylesheet" />
+<link href="../../Content/customBootstrap.css" rel="stylesheet" />
 <script src="../../Scripts/CustomScripts/jQueryLibrary.js"></script>
 <script src="@Url.Content("~/Scripts/CustomScripts/tableFillerScheduleLayout.js")" type="text/javascript"></script>
 <script src="../../Scripts/CustomScripts/bootstrap.minPlayNow.js"></script>
@@ -20,8 +19,8 @@
                             <td>
                                 @hour._9till10
                                 <a class="btn btn-primary btn-lg reservationAnchor" data-toggle="modal" data-target="#myModal"
-                                    data-assigned-id="@hour.HoursID" data-dayId="@day.DaysID">
-                                  Reserve
+                                    data-assigned-id="@hour.HoursID" data-details="@day.DaysID" data-rowid="9">
+                                  9
                                 </a>
                             </td>
                         </tr>
@@ -29,8 +28,8 @@
                             <td>
                                 @hour._10till11
                                 <a class="btn btn-primary btn-lg reservationAnchor" data-toggle="modal" data-target="#myModal"
-                                    data-assigned-id="@hour.HoursID" data-dayId="@day.DaysID">
-                                  Reserve
+                                    data-assigned-id="@hour.HoursID" data-details="@day.DaysID" data-rowid="10">
+                                  10
                                 </a>
                             </td>
                         </tr>
@@ -38,8 +37,8 @@
                             <td>
                                 @hour._11till12
                                 <a class="btn btn-primary btn-lg reservationAnchor" data-toggle="modal" data-target="#myModal"
-                                    data-assigned-id="@hour.HoursID" data-dayId="@day.DaysID">
-                                  Reserve
+                                    data-assigned-id="@hour.HoursID" data-details="@day.DaysID" data-rowid="11">
+                                  11
                                 </a>
                             </td>
                         </tr>
@@ -47,8 +46,8 @@
                             <td>
                                 @hour._12till13
                                 <a class="btn btn-primary btn-lg reservationAnchor" data-toggle="modal" data-target="#myModal"
-                                    data-assigned-id="@hour.HoursID" data-dayId="@day.DaysID">
-                                  Reserve
+                                    data-assigned-id="@hour.HoursID" data-details="@day.DaysID" data-rowid="12">
+                                  12
                                 </a>
                             </td>
                         </tr>
@@ -56,8 +55,8 @@
                             <td>
                                 @hour._13till14
                                 <a class="btn btn-primary btn-lg reservationAnchor" data-toggle="modal" data-target="#myModal"
-                                    data-assigned-id="@hour.HoursID" data-dayId="@day.DaysID">
-                                  Reserve
+                                    data-assigned-id="@hour.HoursID" data-details="@day.DaysID" data-rowid="13">
+                                  13
                                 </a>
                             </td>
                         </tr>
@@ -65,8 +64,8 @@
                             <td>
                                 @hour._14till15
                                 <a class="btn btn-primary btn-lg reservationAnchor" data-toggle="modal" data-target="#myModal"
-                                    data-assigned-id="@hour.HoursID" data-dayId="@day.DaysID">
-                                  Reserve
+                                    data-assigned-id="@hour.HoursID" data-details="@day.DaysID" data-rowid="14">
+                                  14
                                 </a>
                             </td>
                         </tr>
@@ -74,8 +73,8 @@
                             <td>
                                 @hour._15till16
                                 <a class="btn btn-primary btn-lg reservationAnchor" data-toggle="modal" data-target="#myModal"
-                                    data-assigned-id="@hour.HoursID" data-dayId="@day.DaysID">
-                                  Reserve
+                                    data-assigned-id="@hour.HoursID" data-details="@day.DaysID" data-rowid="15">
+                                  15
                                 </a>
                             </td>
                         </tr>
@@ -83,8 +82,8 @@
                             <td>
                                 @hour._16till17
                                 <a class="btn btn-primary btn-lg reservationAnchor" data-toggle="modal" data-target="#myModal"
-                                    data-assigned-id="@hour.HoursID" data-dayId="@day.DaysID">
-                                  Reserve
+                                    data-assigned-id="@hour.HoursID" data-details="@day.DaysID" data-rowid="16">
+                                  16
                                 </a>
                             </td>
                         </tr>
@@ -92,8 +91,8 @@
                             <td>
                                 @hour._17till18
                                 <a class="btn btn-primary btn-lg reservationAnchor" data-toggle="modal" data-target="#myModal"
-                                    data-assigned-id="@hour.HoursID" data-dayId="@day.DaysID">
-                                  Reserve
+                                    data-assigned-id="@hour.HoursID" data-details="@day.DaysID" data-rowid="17">
+                                  17
                                 </a>
                             </td>
                         </tr>
@@ -101,8 +100,8 @@
                             <td>
                                 @hour._18till19
                                 <a class="btn btn-primary btn-lg reservationAnchor" data-toggle="modal" data-target="#myModal"
-                                    data-assigned-id="@hour.HoursID" data-dayId="@day.DaysID">
-                                  Reserve
+                                    data-assigned-id="@hour.HoursID" data-details="@day.DaysID" data-rowid="18">
+                                  18
                                 </a>
                             </td>
                         </tr>
@@ -110,8 +109,8 @@
                             <td>
                                 @hour._19till20
                                 <a class="btn btn-primary btn-lg reservationAnchor" data-toggle="modal" data-target="#myModal"
-                                    data-assigned-id="@hour.HoursID" data-dayId="@day.DaysID">
-                                  Reserve
+                                    data-assigned-id="@hour.HoursID" data-details="@day.DaysID" data-rowid="19">
+                                  19
                                 </a>
                             </td>
                         </tr>
@@ -119,8 +118,8 @@
                             <td>
                                 @hour._20till21
                                 <a class="btn btn-primary btn-lg reservationAnchor" data-toggle="modal" data-target="#myModal"
-                                    data-assigned-id="@hour.HoursID" data-dayId="@day.DaysID">
-                                  Reserve
+                                    data-assigned-id="@hour.HoursID" data-details="@day.DaysID" data-rowid="20">
+                                  20
                                 </a>
                             </td>
                         </tr>
@@ -128,8 +127,8 @@
                             <td>
                                 @hour._21till22
                                 <a class="btn btn-primary btn-lg reservationAnchor" data-toggle="modal" data-target="#myModal"
-                                    data-assigned-id="@hour.HoursID" data-dayId="@day.DaysID">
-                                  Reserve
+                                    data-assigned-id="@hour.HoursID" data-details="@day.DaysID" data-rowid="21">
+                                  21
                                 </a>
                             </td>
                         </tr>
@@ -155,7 +154,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary" onclick="">Reserve</button>
+        <button type="button" class="btn btn-primary reservationButton">Reserve</button>
       </div>
     </div>
   </div>

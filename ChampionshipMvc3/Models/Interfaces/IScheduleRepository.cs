@@ -13,6 +13,8 @@ namespace ChampionshipMvc3.Models.Interfaces
         Schedule GetTeamSchedule(Guid teamId);
         Schedule GetPlayerSchedule(Guid playerId);
         Schedule GetPlayFieldSchedule(Guid playFieldId);
+        Schedule GetScheduleByDayId(Guid dayId);
+        Day GetDayById(Guid dayId);
 
     }
 }
