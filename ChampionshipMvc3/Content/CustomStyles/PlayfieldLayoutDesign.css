@@ -1,7 +1,4 @@
-﻿body {
-}
-
-#mainCustom{
+﻿#mainCustom{
     position:relative;
     text-align:center;
     vertical-align:middle;
@@ -13,7 +10,6 @@
     left:140px;
     text-align:center;
     vertical-align:middle;
-    
 }
 
 #mainCustomFieldInfo {
