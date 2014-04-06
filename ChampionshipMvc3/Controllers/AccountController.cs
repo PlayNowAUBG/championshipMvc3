@@ -17,7 +17,7 @@ namespace ChampionshipMvc3.Controllers
     {
 
         private const string registerTeamView = "RegisterTeam";
-        private const string registerPlayerView = "RegisterPlayer";
+        private const string registerPlayerView = "_RegisterPlayer";
 
         private IPlayerRepository playerRepository;
         private ITeamRepository teamRepository;
@@ -111,10 +111,11 @@ namespace ChampionshipMvc3.Controllers
             return View(teamModel);
         }
 
-
+        [AcceptVerbs(HttpVerbs.Get)]
+        [HttpGet]
         public ActionResult RegisterPlayer()
         {
-            return View(registerPlayerView);
+            return PartialView(registerPlayerView);
         }
 
         [HttpPost]
@@ -143,7 +144,7 @@ namespace ChampionshipMvc3.Controllers
                 return RedirectToAction("Index", "Home");
             }
 
-            return View(registerPlayerView);
+            return PartialView(registerPlayerView);
         }
 
         private static MembershipCreateStatus RegisterUser(RegisterModel regModel)

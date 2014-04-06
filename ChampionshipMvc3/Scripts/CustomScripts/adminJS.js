@@ -5,9 +5,9 @@
         var playerJsID = $(this).data('assigned-id');
 
         $.ajax({
-            url: "/AdminPlayfield/Approve",
+            url: "/Admin/ApprovePlayer",
             type: "POST",
-            cache: true,
+            cache: false,
             data: { playerID: playerJsID },
             success: function () { alert("Player approved") },
             error: function () { alert("error has occured"); }

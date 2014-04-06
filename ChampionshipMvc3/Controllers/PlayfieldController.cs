@@ -95,6 +95,11 @@ namespace ChampionshipMvc3.Controllers
             return RedirectToAction("Index", "Home");
         }
 
+        public ActionResult SuccessReservation()
+        {
+            return View("SuccessReservation");
+        }
+
         //
         // POST: /Playfield/Delete/5
 

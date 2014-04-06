@@ -19,7 +19,7 @@
         var posting = $.post(url, { hourInterval: selectedHourInterval, hourId: selectedHourId, dayId: selectedDayId })
         
         posting.done(function () {
-            window.location = "/";
+            window.location = "/Playfield/SuccessReservation";
         })
     });
 

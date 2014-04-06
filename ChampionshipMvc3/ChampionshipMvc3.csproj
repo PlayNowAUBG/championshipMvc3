@@ -257,12 +257,14 @@
     <Content Include="Views\Reservation\CreateReservation.cshtml" />
     <Content Include="Views\Account\_Register.cshtml" />
     <Content Include="Views\Account\RegisterTeam.cshtml" />
-    <Content Include="Views\Account\RegisterPlayer.cshtml" />
     <Content Include="Views\_FileUpload.cshtml" />
     <Content Include="Views\Playfield\CreatePlayfield.cshtml" />
     <Content Include="Views\Playfield\PlayfieldDetails.cshtml" />
     <Content Include="Views\Admin\AdminView.cshtml" />
     <Content Include="Views\Shared\_Schedule.cshtml" />
+    <Content Include="Views\Playfield\SuccessReservation.cshtml" />
+    <Content Include="Views\Admin\PendingRequests.cshtml" />
+    <Content Include="Views\Account\_RegisterPlayer.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

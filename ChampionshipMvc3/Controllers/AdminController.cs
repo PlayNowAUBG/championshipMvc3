@@ -12,7 +12,7 @@ namespace ChampionshipMvc3.Controllers
     {
         //TODO: Approve refreshes page;
         private const string adminViewName = "AdminView";
-
+        private const string pendingRequests = "PendingRequests";
         private IPlayerRepository playerRepository;
 
         public AdminController()
@@ -27,95 +27,16 @@ namespace ChampionshipMvc3.Controllers
             return View(adminViewName, playerRepository.GetAllUnapprovedPlayers());
         }
 
-        public ActionResult Approve(Guid playerID)
+        public ActionResult ApprovePlayer(Guid playerID)
         {
             playerRepository.ApprovePlayer(playerID);
-            return View(adminViewName, playerRepository.GetAllUnapprovedPlayers());
-        }
-        //
-        // GET: /AdminPlayfield/Details/5
 
-        public ActionResult Details(int id)
-        {
-            return View();
+            return PartialView(pendingRequests, playerRepository.GetAllUnapprovedPlayers());
         }
 
-        //
-        // GET: /AdminPlayfield/Create
-
-        public ActionResult Create()
+        public ActionResult UnapprovedPlayers()
         {
-            return View();
-        } 
-
-        //
-        // POST: /AdminPlayfield/Create
-
-        [HttpPost]
-        public ActionResult Create(FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add insert logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
-        
-        //
-        // GET: /AdminPlayfield/Edit/5
- 
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
-
-        //
-        // POST: /AdminPlayfield/Edit/5
-
-        [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add update logic here
- 
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        //
-        // GET: /AdminPlayfield/Delete/5
- 
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        //
-        // POST: /AdminPlayfield/Delete/5
-
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add delete logic here
- 
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
+            return PartialView(pendingRequests, playerRepository.GetAllUnapprovedPlayers());
         }
     }
 }
