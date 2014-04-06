@@ -82,7 +82,7 @@ namespace ChampionshipMvc3.Controllers
         
         public ActionResult RegisterTeam()
         {
-            return View(registerTeamView);
+            return PartialView(registerTeamView);
         }
         
         [HttpPost]
@@ -108,7 +108,7 @@ namespace ChampionshipMvc3.Controllers
                 return RedirectToAction("Index", "Home");
             }
 
-            return View(teamModel);
+            return PartialView(teamModel);
         }
 
         [AcceptVerbs(HttpVerbs.Get)]

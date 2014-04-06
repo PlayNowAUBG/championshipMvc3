@@ -14,7 +14,7 @@
      
         if ($tds.match(checkForFalse)) {
             $(this).css("position", "relative");
-            $(this).css('background-color', 'red');
+            $(this).css('background-color', 'green');
             $(this).css('border', '0px');
             $(this).css("text-align", "center");
             $(this).css('vertical-align', 'middle');
@@ -26,7 +26,7 @@
         }
         else if (!$tds.match(checkForFalse)) {
             $(this).css("position", "relative");
-            $(this).css('background-color', 'green');
+            $(this).css('background-color', 'red');
             $(this).css('border', '0px');
             $(this).css("text-align", "center");
             $(this).css('vertical-align', 'middle');
