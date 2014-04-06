@@ -4,8 +4,6 @@
 
         $.get(url, function (data) {
             $("#playerContainer").html(data);
-
-            $("#regPlayerModal").show();
         });
     });
 });

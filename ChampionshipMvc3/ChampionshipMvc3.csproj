@@ -262,9 +262,11 @@
     <Content Include="Views\Playfield\PlayfieldDetails.cshtml" />
     <Content Include="Views\Admin\AdminView.cshtml" />
     <Content Include="Views\Shared\_Schedule.cshtml" />
-    <Content Include="Views\Playfield\SuccessReservation.cshtml" />
-    <Content Include="Views\Admin\PendingRequests.cshtml" />
+    <Content Include="Views\Admin\_PendingRequests.cshtml" />
     <Content Include="Views\Account\_RegisterPlayer.cshtml" />
+    <Content Include="Views\Playfield\SuccessReservation.cshtml" />
+    <Content Include="Views\Admin\PlayfieldAdminPanel.cshtml" />
+    <Content Include="Views\Admin\_PendingReservations.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

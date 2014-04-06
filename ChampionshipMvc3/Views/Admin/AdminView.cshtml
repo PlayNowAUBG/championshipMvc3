@@ -1,12 +1,5 @@
-﻿@model IEnumerable<ChampionshipMvc3.Models.DataContext.Player>
-
-@{
-    ViewBag.Title = "AdminView";
-}
-
-
-<h2>AdminPlayfieldView</h2>
+﻿<h2>Super admin</h2>
 
 <div>
-    @Html.Action("UnapprovedPlayers", "Admin")
+    @Html.Action("PendingRequests", "Admin")
 </div>

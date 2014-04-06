@@ -18,15 +18,13 @@
             @Html.TextBoxFor(model => model.TeamName, new { data_autocomplete = Url.Action("FilterTeams", "Account") })
             @Html.ValidationMessageFor(model => model.TeamName)
         </div>
-
-        <div class="hidden">
-            <div class="editor-label">
-                @Html.LabelFor(model => model.TeamPassword)
-            </div>
-            <div class="editor-field">
-                @Html.TextBoxFor(model => model.TeamPassword)
-                @Html.ValidationMessageFor(model => model.TeamPassword)
-            </div>
+        
+        <div class="editor-label">
+            @Html.LabelFor(model => model.TeamPassword)
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.TeamPassword)
+            @Html.ValidationMessageFor(model => model.TeamPassword)
         </div>
         <br />
         <br />

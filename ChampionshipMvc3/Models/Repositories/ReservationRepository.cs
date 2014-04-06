@@ -29,5 +29,27 @@ namespace ChampionshipMvc3.Models.Repositories
         {
             RepositoryBase.DataContext.SubmitChanges();
         }
+
+
+        public ICollection<Reservation> GetAllUnapprovedReservations()
+        {
+            return RepositoryBase.DataContext.Reservations
+                                .Where(r => r.isApproved == false).ToList();
+        }
+
+
+        public Reservation GetReservationById(Guid reservationId)
+        {
+            return RepositoryBase.DataContext.Reservations
+                .Where(r => r.ReservationID == reservationId)
+                .FirstOrDefault();
+        }
+
+        public void ApproveReservation(Guid reservationId)
+        {
+            Reservation currentReservation = this.GetReservationById(reservationId);
+            currentReservation.isApproved = true;
+            this.SaveChanges();
+        }
     }
 }
